@@ -1,0 +1,149 @@
+/* ---------- COLORS (change these to restyle the whole app) ---------- */
+:root {
+  --navy: #1f2a5c;
+  --sky: #dff1ff;
+  --sun: #ffc933;
+  --grass: #2fbf85;
+  --berry: #ff5c8a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Fredoka", sans-serif;
+  background: var(--sky);
+  color: var(--navy);
+}
+
+button { font-family: inherit; cursor: pointer; }
+.hidden { display: none !important; }
+
+/* ---------- TOP BAR ---------- */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 24px;
+  background: linear-gradient(90deg, #1f2a5c, #4b3ba8);
+  color: white;
+}
+.top h1 { margin: 0; color: var(--sun); font-size: 2rem; }
+
+.mode button {
+  background: transparent;
+  color: white;
+  border: 2px solid var(--sun);
+  padding: 6px 14px;
+}
+.mode button.on { background: var(--sun); color: var(--navy); font-weight: 700; }
+
+.player { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+#pet { font-size: 2.8rem; transition: transform 0.3s; }
+#pet.jump { animation: jump 0.6s; }
+@keyframes jump {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px) scale(1.3); }
+}
+
+.bar { width: 150px; height: 14px; background: #3a4784; border-radius: 10px; overflow: hidden; }
+#barFill { height: 100%; width: 0%; background: var(--sun); transition: width 0.6s; }
+
+/* ---------- TABS ---------- */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 24px 0; }
+.tabs button {
+  border: none;
+  background: white;
+  color: var(--navy);
+  padding: 10px 18px;
+  font-size: 1rem;
+  border-radius: 14px 14px 0 0;
+}
+.tabs button.on { background: var(--navy); color: white; }
+
+main { max-width: 1000px; margin: 0 auto; padding: 24px; }
+
+/* ---------- LIFE MAP ---------- */
+.zones { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.zone { background: white; border-radius: 24px; padding: 18px; border-top: 10px solid; }
+.zone h3 { margin: 0 0 4px; }
+
+.quest {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 14px;
+  background: var(--sky);
+  border: 2px solid var(--navy);
+  border-radius: 14px;
+  font-size: 0.95rem;
+  color: var(--navy);
+  text-align: left;
+  transition: transform 0.15s;
+}
+.quest:hover { background: var(--sun); transform: scale(1.04) rotate(-1deg); }
+.quest.done { background: var(--grass); border-color: var(--grass); color: white; }
+
+/* ---------- CARDS AND BUTTONS ---------- */
+.card { background: white; border-radius: 20px; padding: 18px; margin-bottom: 16px; }
+.btn { border: none; background: var(--berry); color: white; padding: 10px 18px; border-radius: 14px; font-size: 1rem; }
+.btn.dark { background: var(--navy); }
+.btn:hover { filter: brightness(1.1); }
+input { font-family: inherit; font-size: 1rem; padding: 9px 12px; border: 2px solid var(--navy); border-radius: 12px; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+/* ---------- SCRIPTS ---------- */
+.line { padding: 8px 12px; margin: 6px 0; border-radius: 12px; background: var(--sky); }
+.line.you { background: var(--sun); }
+.whatif { margin-top: 10px; padding-left: 12px; border-left: 4px solid var(--berry); }
+
+/* ---------- DEADLINES ---------- */
+.deadline {
+  display: flex; justify-content: space-between; align-items: center;
+  background: white; padding: 12px 16px; margin-bottom: 8px;
+  border-radius: 14px; border-left: 10px solid var(--grass);
+}
+.deadline.soon { border-color: var(--sun); }
+.deadline.urgent { border-color: var(--berry); }
+.deadline.late { border-color: gray; opacity: 0.6; }
+
+/* ---------- CREW ---------- */
+.member { display: flex; justify-content: space-between; align-items: center; background: white; padding: 12px 16px; margin-bottom: 8px; border-radius: 14px; }
+.member.me { background: var(--sun); }
+
+/* ---------- FOCUS ---------- */
+.timer { font-size: 5rem; font-weight: 700; text-align: center; }
+
+/* ---------- QUEST POPUP ---------- */
+#overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(31, 42, 92, 0.65);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 20;
+}
+#popup { background: white; border-radius: 24px; padding: 24px; width: 90%; max-width: 440px; animation: pop 0.25s; }
+#popup label { display: block; padding: 8px 0; }
+#popup input { width: 18px; height: 18px; margin-right: 8px; }
+@keyframes pop { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ---------- CONFETTI (the wow part) ---------- */
+.confetti {
+  position: fixed; top: -40px; font-size: 1.8rem; z-index: 30;
+  pointer-events: none;
+  animation: fall 2.2s linear forwards;
+}
+@keyframes fall { to { transform: translateY(110vh) rotate(540deg); } }
+
+/* ---------- TOAST + RESET ---------- */
+#toast {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translate(-50%, 120px);
+  background: var(--navy); color: white;
+  padding: 12px 22px; border-radius: 20px;
+  transition: transform 0.3s; z-index: 40;
+}
+#toast.show { transform: translate(-50%, 0); }
+
+#resetBtn { display: block; margin: 30px auto; background: none; border: none; color: var(--navy); opacity: 0.5; text-decoration: underline; }

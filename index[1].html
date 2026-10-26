@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sidequest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP BAR: logo, age mode, pet and XP -->
+  <header class="top">
+    <h1>Sidequest</h1>
+
+    <div class="mode">
+      <button id="teenBtn">Teen 13-17</button>
+      <button id="adultBtn">Adult 18+</button>
+    </div>
+
+    <div class="player">
+      <div id="pet">🥚</div>
+      <div>
+        <div id="level">Level 1</div>
+        <div class="bar"><div id="barFill"></div></div>
+        <small id="xpText">0 XP</small>
+      </div>
+    </div>
+  </header>
+
+  <!-- TABS -->
+  <nav class="tabs">
+    <button id="tab-map">Life Map</button>
+    <button id="tab-scripts">Script Mode</button>
+    <button id="tab-radar">Deadline Radar</button>
+    <button id="tab-crew">Crew</button>
+    <button id="tab-focus">Focus Room</button>
+  </nav>
+
+  <!-- The page content gets put in here by app.js -->
+  <main id="view"></main>
+
+  <!-- Quest popup (hidden until you click a quest) -->
+  <div id="overlay" class="hidden">
+    <div id="popup"></div>
+  </div>
+
+  <div id="toast"></div>
+
+  <button id="resetBtn">Reset progress</button>
+
+  <script src="app.js"></script>
+</body>
+</html>
